@@ -20,9 +20,9 @@ int main(int argc, char ** argv)
 	return EXIT_SUCCESS;
 }
 void handler(int signal_number){
-	if(++sigusr1_count == 3)
+	if(++sigusr1_count == 3) 
 	{
-		printf("SIGUSR1  was triggered %d times. Alright! I'm done.",sigusr1_count);
+		printf("SIGUSR1  was triggered %d times. Alright! I'm done.\n",sigusr1_count);
 		exit(EXIT_SUCCESS);
 	}
 }
