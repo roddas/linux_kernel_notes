@@ -33,5 +33,22 @@ initrd.img-5.0.0-20-generic    System.map-5.0.0-21-generic
 initrd.img-5.0.0-21-generic    vmlinuz-5.0.0-20-generic
 lost+found                     vmlinuz-5.0.0-21-generic
 
+
+## Compiling the Kernel
+
+Run the following command to generate a kernel configuration file based on the current configuration. This step is important to configure the kernel, which has a good chance to work correctly on your system. You will be prompted to tune the configuration to enable new features and drivers that have been added since Ubuntu snapshot the kernel from the mainline. make all will invoke make oldconfig in any case. I am showing these two steps separately just to call out the configuration file generation step.
+```
+make oldconfig
+
+Another way to trim down the kernel and tailor it to your system is by using make localmodconfig. This option creates a configuration file based on the list of modules currently loaded on your system.
+
+lsmod > /tmp/my-lsmod
+make LSMOD=/tmp/my-lsmod localmodconfig
+
+Once this step is complete, it is time to compile the kernel. Using the -j option helps the compiles go faster. The -j option specifies the number of jobs (make commands) to run simultaneously:
+
+make -j3 all
+```
+
 cp /boot/<config-5.0.0-21-generic> .config
 ```
